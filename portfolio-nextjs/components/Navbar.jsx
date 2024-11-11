@@ -4,12 +4,53 @@ import Link from 'next/link'
 import {AiOutlineClose , AiOutlineMail, AiOutlineMenu} from 'react-icons/ai'
 import {FaGithub, FaIgloo, FaInstagram, FaLinkedinIn} from 'react-icons/fa'
 
+import { useRouter } from 'next/router'
+
 
 const Navbar = () => {
 
   const [nav, setNav] = useState (false)
 
   const [shadow, setShadow] = useState(false)
+
+  const [navBg, setNavBg] = useState('#ecf0f3')
+
+  const [LinkColor , setLinkColor] = useState ('#1f2937')
+
+  const router = useRouter ()
+
+
+  
+
+   useEffect(() => {
+     if (
+       router.asPath === '/property' ||
+       router.asPath === '/crypto' ||
+       router.asPath === '/netflix' ||
+       router.asPath === '/twitch'
+     ) {
+       setNavBg('transparent');
+       setLinkColor('#ecf0f3');
+     } else {
+       setNavBg('#ecf0f3');
+       setLinkColor('#1f2937');
+     }
+   }, [router]);
+
+
+  useEffect(() => {
+    const handleShadow = () => {
+      if (window.scrollY >= 90) {
+        setShadow(true);
+      } else {
+        setShadow(false);
+      }
+    };
+    window.addEventListener('scroll', handleShadow);
+  }, []);
+
+
+
 
 
   const handleNav = () => {
@@ -32,7 +73,7 @@ useEffect(()=>{
 
 
 
-  <div className={shadow ? 'fixed w-full h-20 shadow-xl z-[100]' : 'fixed w-full h-20 z-[100]'}> 
+  <div style={{backgroundColor : `${navBg}`}} className={shadow ? 'fixed w-full h-20 shadow-xl z-[100]' : 'fixed w-full h-20 z-[100]'}> 
       <div className='flex justify-between items-center w-full h-full px-2 2xl:px-16'>
     
       <Image src="/assets/navLogo.png" alt='/' width='70' height='20' />
@@ -42,7 +83,7 @@ useEffect(()=>{
 
 
         <div>
-          <ul className='hidden md:flex'>
+          <ul style={{color: `${LinkColor}`}}className='hidden md:flex'>
             <Link href='/'>
             <li className='ml-10 text-xl uppercase hover:border-b'>Home</li>
             </Link>

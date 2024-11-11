@@ -21,7 +21,7 @@ const Projects = () => {
             <div className='grid md:grid-cols-2 gap-8'> 
 
 
-              <Projectitem title='Property Finder' backgroundImg={propertyImg} projectUrl='/project' />
+              <Projectitem title='Property Finder' backgroundImg={propertyImg} projectUrl='/property' />
               <Projectitem title='Crypto App' backgroundImg={cryptoImg} projectUrl='/crypto' />
 
               <Projectitem title='Netflix App' backgroundImg={netflixImg} projectUrl='/netflix' />
